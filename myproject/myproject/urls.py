@@ -20,7 +20,7 @@ from django.shortcuts import redirect
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('form/', include('form.urls')),   # app routes served under /form/
-    path('', lambda request: redirect('form:home')),  # root redirect to home (will require login)
+    path('', include('form.urls')),     # app routes served under /form/
+    
 ]
 

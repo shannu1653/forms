@@ -1,0 +1,451 @@
+.trending {
+  display: flex;
+  align-items: center ;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}
+.trending h1,a{
+  font-family: "Nunito", sans-seri;
+  font-weight: 100;
+  padding-left: 20px;
+}
+
+/* trending_icons */
+.iconic {
+  display: flex;
+  column-gap: 0px;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-between;
+
+}
+
+.card {
+  background: #fff;
+  width: 230px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(186, 40, 189, 0.25);
+  padding: 15px;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin: 10px 10px;
+  padding-top: 0px;
+  height: 48vh !important;
+
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 30px rgba(66, 162, 186, 1.25);
+}
+
+.discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(45deg, #4CAF50, #81C784);
+  color: white;
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.wishlist {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 24px;
+  color: #FF4081;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.wishlist:hover {
+  transform: scale(1.3);
+}
+
+.card img {
+  width: 80%;
+  height: 100px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  transition: transform 0.3s;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+
+.product-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 5px 0;
+  color: #333;
+}
+
+.rating {
+  font-size: 14px;
+  color: #777;
+  margin: 3px 0;
+}
+
+.rating span {
+  color: gold;
+  font-size: 16px;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 5px 0;
+  color: #ff6a00;
+}
+
+.quantity {
+  margin: 5px 0;
+}
+
+.quantity input {
+  width: 70px;
+  height: 30px;
+  padding: 6px;
+  text-align: center;
+  font-size: 16px;
+  border: 1px solid #ec6dbe;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  margin-left: 0px;
+}
+
+.quantity input:focus {
+  border-color: #ff6a00;
+  box-shadow: 0 0 5px rgba(255, 106, 0, 0.4);
+}
+
+.add-to-cart {
+  width: 50%;
+  margin-left: 20px;
+  display: inline-block;
+  background: linear-gradient(45deg, #ff6a00, #ff8a50);
+  color: white;
+  padding: 8px 2px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(255, 106, 0, 0.3);
+}
+
+.add-to-cart:hover {
+  background: linear-gradient(45deg, #ff8a50, #ff6a00);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(255, 106, 0, 0.4);
+}
+
+
+/* luxacreamy */
+.luxacreamy{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  column-gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.luxacreamy p{
+      font-family: 'Garamond';
+      color: #ffc43f;
+          font-weight: 700 !important;
+          font-size: calc(1.3rem + .6vw) !important;
+}
+.luxacreamy h1{
+      letter-spacing: 0.02em;
+    font-size: 33px;
+    font-family: "Nunito", sans-serif;
+    font-weight: 700;
+    color: #222222;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    line-height: 1.2;
+}
+.luxacreamy h5{
+   font: 16px "Open Sans", sans-serif;
+    margin: 0px 0px 16px;
+    color: #584c4c;
+}
+.luxacreamy button{
+   font: 16px "Open Sans", sans-serif;
+    padding: 6px 12px;
+    background: #212529;
+    color: #ffffff;
+    border-radius: 7px;
+}
+.luxa{
+  display: block;
+  width: 45%;
+  height: 50vh;
+  background-image: url("./images/luxa_dark.png");
+  z-index: 9;
+  background-repeat: no-repeat;
+  background-position: top -20px right -120px;
+  background-size: 500px;
+      padding: 3rem !important;
+  border-radius: 10px;
+  background-color: rgb(245, 232, 240);
+  
+}
+.creamy{
+  display: block;
+  width: 45%;
+  height: 50vh;
+  background-image: url("./images/creamy.png");
+  z-index: 9;
+  background-repeat: no-repeat;
+  background-position: top right 10px;
+      padding: 3rem !important;
+      border-radius: 10px;
+      background-color: rgb(194, 225, 237);
+}
+
+
+/* scrolling wrapper */
+.iconic1 {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  background: #f6f3f3;
+  padding: 20px 0;
+}
+
+/* track that moves */
+.scroll-track1 {
+  display: flex;
+  gap: 30px;
+  animation: scroll 6s linear infinite;
+}
+
+/* Pause animation ONLY if input or button is hovered */
+.iconic1:has(.quantity1 input:hover) .scroll-track1,
+.iconic1:has(.quantity1 .add-to-cart1:hover) .scroll-track1 {
+  animation-play-state: paused;
+}
+
+/* single card style */
+.card1 {
+  flex: 0 0 auto;
+  width: 220px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+}
+
+.discount1 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: #fff;
+  padding: 3px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.wishlist1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.card1 img {
+  width: 100%;
+  height: auto;
+  margin: 15px 0;
+}
+
+.product-title1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.rating1 {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 8px;
+}
+
+.price1 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.quantity1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quantity1 input {
+  width: 50px;
+  padding: 5px;
+  text-align: center;
+}
+
+.add-to-cart1 {
+  background: #28a745;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+/* scrolling animation */
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* form */
+.form{
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: paleturquoise;
+  height: 90vh;
+  max-width: 1300px;
+  border-radius: 40px;
+  column-gap: 60px;
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+  margin-top: 3rem !important;
+  margin-bottom: 3rem !important;
+}
+.form1{
+  height: 70vh;
+  width: 40%;
+  padding: 2rem !important;
+}
+.form1 h2{
+      font-weight: 800;
+      font-size: calc(0.975rem + 2.2vw);
+      line-height: 1.2;
+      font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form1 .text{
+  color: rgba(255, 196, 63, 1);
+}
+
+.form1 p{
+  font: 16px "Open Sans", sans-serif;
+    margin: 0px 0px 16px;
+    color: #584c4c;
+}
+
+.form2 {
+  background: #42c4ca;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  width: 420px;
+  text-align: center;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.form2 h3 {
+  margin: 15px 0 5px;
+  font-size: 18px;
+  color: #171515;
+}
+
+.form2 input[type="text"],
+.form2 input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.form2 input[type="text"]:focus,
+.form2 input[type="email"]:focus {
+  border-color: #ff7a59;
+  box-shadow: 0 0 8px rgba(255, 122, 89, 0.5);
+  transform: scale(1.05);
+}
+
+.form2 input[type="checkbox"] {
+  margin: 10px 0;
+  accent-color: #2207ea;
+}
+
+.form2 button {
+  margin-top: 15px;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #d2765f, #e0a83e);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.4s;
+  animation: bounce 2s infinite;
+}
+
+.form2 button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(255, 122, 89, 0.5);
+}
+
+.form2 button a {
+  text-decoration: none;
+  color: white;
+  display: block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

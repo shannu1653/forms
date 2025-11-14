@@ -1,0 +1,928 @@
+/* hide main toggle checkbox */
+.mobilenav #menu-toggle { display: none; }
+/* hide sub toggle checkbox */
+.mobilenav .has-sub input { display: none; }
+
+/* default hide on desktop */
+.mobilenav .hamburger,
+.mobilenav .minimenu,
+.mobilenav .hidenav { display: none; }
+
+/* MOBILE */
+@media screen and (min-width:320px) and (max-width:426px) {
+  .mobilenav { position: relative; }
+
+  /* hamburger */
+  .mobilenav .hamburger {
+    display: block;
+    position: fixed;
+    left: 12px;
+    top: 12px;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 1200;
+    color: rgb(253,10,192);
+    margin-top: -15px;
+  }
+
+  /* mini menu (first 3 items) */
+  .mobilenav .minimenu {
+    display: flex;
+    gap: 8px;
+    position: fixed;
+    left: 60px;
+    top: 12px;
+    z-index: 1100;
+  }
+  .mobilenav .minimenu a {
+    text-decoration: none;
+    padding: 6px 8px;
+    color: #333;
+  }
+
+  /* full off-canvas menu */
+  .mobilenav .hidenav {
+    display: block;
+    margin-top: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height:80vh;
+    width: 260px;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease;
+    background: #cfcecf;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.18);
+    z-index: 1150;
+    overflow-y: auto;
+    padding-top: 20px;
+  }
+
+  .mobilenav .hidenav ul { list-style: none; margin: 0; padding: 0; }
+  .mobilenav .hidenav ul li > a,
+  .mobilenav .pages-link {
+    display: block;
+    padding: 12px 18px;
+    color: #333;
+    text-decoration: none;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+  }
+
+  .mobilenav .hidenav ul li > a:hover,
+  .mobilenav .pages-link:hover {
+    background: rgb(253,10,192);
+    color: #fff;
+  }
+
+  /* slide in menu when checked */
+  .mobilenav #menu-toggle:checked ~ .hidenav {
+    transform: translateX(0);
+  }
+  .mobilenav #menu-toggle:checked ~ .minimenu {
+    display: none; /* hide mini menu while full menu open */
+  }
+
+  /* hide sub-menu by default */
+  .mobilenav .has-sub .sub-menu {
+    display: none;
+  }
+
+  /* show sub-menu when its checkbox is checked */
+  .mobilenav .has-sub input:checked + .pages-link + .sub-menu {
+    display: block;
+  }
+
+  /* style sub-menu items */
+  .mobilenav .sub-menu li a {
+    padding-left: 32px; /* indent inside */
+    background: #f9f9f9;
+    border-bottom: 1px solid #eee;
+  }
+  .mobilenav .sub-menu li a:hover {
+    background: rgb(253,10,192);
+    color: #fff;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* <!-- catageory --> */
+
+@media screen and (min-width:426px) and (max-width:789px) {
+
+  .slider,
+  .slider2 {
+    max-width: 95%;
+    gap: 0.8rem;
+    height: calc(160px + 2rem);
+  }
+
+  .slider {
+    height: 30vh;
+  }
+
+  .slider img,
+  .slider2 .class {
+    width: 160px;
+    height: 140px;
+  }
+
+  .slider b {
+    margin: 0 40px;
+    font-size: large;
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:426px) {
+
+  .catageory h1 {
+    font-family: "Nunito", sans-seri;
+    font-weight: 1000;
+    margin-left: 15px;
+    padding-top: 15px;
+    border: 3ps solid rgb(9, 28, 172);
+  }
+
+  .slider {
+    max-width: 100%;
+    gap: 0.1rem;
+    margin: 20px 0px;
+
+  }
+
+  .slider img,
+  .slider2 .class {
+    width: 120px;
+    height: 100px;
+  }
+
+  .slider {
+    height: 30vh;
+  }
+
+  .slider b {
+    margin: 0 2px;
+    font-size: medium;
+    font-weight: 800;
+    padding-left: 30px;
+  }
+
+  .slider a {
+    height: 25vh;
+
+  }
+}
+
+/* newly Arrived Brands */
+/* Tablet screens (max-width: 1024px) */
+@media screen and (min-width:426px) and (max-width:789px) {
+  .slider2 .class {
+    width: 280px;
+    height: 40v;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .slider2 .image {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .slider2 .para {
+    max-width: 100%;
+    padding: 5px 15px;
+  }
+}
+
+/* Mobile screens (max-width: 600px) */
+@media screen and (min-width:320px) and (max-width:426px) {
+  .slider2 {
+    height: 50vh;
+    margin: 20px auto;
+  }
+
+  .brands h1 {
+    font-family: "Nunito", sans-seri;
+    font-weight: 800;
+    margin-left: 15px;
+    padding-top: 5px;
+  }
+
+  .slider2 .class {
+    display:block;
+    width: 200px;
+    height: 42vh;
+    padding: 8px;
+    margin: 0 auto;
+    border: 0.5px solid rgb(157, 208, 157);
+    text-align: center;
+  }
+
+  .slider2 .image {
+    max-width: 75%;
+    height: 126px;
+    margin-left: 25px;
+    margin-top: 0px;
+
+  }
+  .slider2 img{
+    margin: 0px 0px 0px 0px !important;
+    width:130px ;
+    height: 120px;
+  }
+
+  .slider2 .para {
+    max-width: 100%;
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+}
+
+/* Trending Products */
+@media screen and (min-width: 320px) and (max-width: 426px) {
+  .trending {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-bottom: 10px;
+    /* border: 2px solid yellow;  (use only for debugging) */
+  }
+
+  .trending h1{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  .trending a {
+    font-size:15px;
+    padding-left: 20px;
+    display: none;
+  }
+
+  .iconic {
+    justify-content: center; 
+    flex-wrap: wrap;
+    gap: 15px; 
+    
+  }
+
+  .card {
+    width: 90%;             
+    margin: 10px auto;       
+    height: auto !important; 
+   
+  }
+
+  .card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover; 
+  }
+
+  .add-to-cart {
+    width: 45%;
+    margin-left: 1;
+  }
+
+  .quantity input {
+    width: 60px; 
+  }
+}
+
+@media screen and (min-width: 427px) and (max-width: 789px) {
+  .trending {
+    flex-direction: row; /* show items in a row */
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 15px;
+  }
+
+  .trending h1 {
+    font-size: 22px;
+  }
+
+  .trending a {
+    font-size: 16px;
+    display: inline-block; /* show links again on tablets */
+    padding-left: 10px;
+  }
+
+  .iconic {
+    justify-content: space-around; 
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .card {
+    width: 45%; /* two cards per row */
+    margin: 15px auto;
+    height: auto !important;
+  }
+
+  .card img {
+    width: 100%;
+    height: 160px; /* bigger image for tablets */
+    object-fit: cover;
+  }
+
+  .add-to-cart {
+    width: 40%;
+  }
+
+  .quantity input {
+    width: 70px;
+  }
+}
+
+
+
+/* mostpular Products */
+@media screen and (min-width:320px) and (max-width:426px) {
+  .mostjust {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    padding: 20px;
+    column-gap: 0;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+  .mostjust .most,
+  .mostjust .just {
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  .mostjust .product-card {
+    height: 65vh;
+  }
+
+  .mostjust .product-card img {
+    width: 140px;
+    height: 120px;
+  }
+
+  .most h1,
+  .just h1 {
+    margin-left: -20px;
+    text-align: center;
+  }
+
+  .most h1 {
+    font-size: x-large;
+    margin-left: 20px;
+  }
+
+  .most .product {
+    /* margin: -10px; */
+    margin-left: -10px;
+  }
+}
+
+
+@media screen and (min-width:426px) and (max-width:789px) {
+  .mostjust {
+    flex-direction: row;       
+    flex-wrap: wrap;
+    width: 95%;
+    height: auto;
+    padding: 25px;
+    gap: 20px;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+  .mostjust .most,
+  .mostjust .just {
+    width: 48%;              
+    height: 80vh;
+    margin-bottom: 25px;
+  }
+
+  .mostjust .product-card {
+    height: 60vh;             
+  }
+
+  .mostjust .product-card img {
+    width: 180px;             
+    height: 150px;
+  }
+
+  .most h1,
+  .just h1 {
+    margin-left: 0;
+    text-align: center;
+    font-size: 1.8rem; 
+    padding: 17px 0px 0px 20px;      
+  }
+
+  .most .product {
+    margin-left: 0;          
+  }
+}
+
+
+
+/* <!-- luxacreamy 151css --> */
+
+@media screen and (min-width: 320px) and (max-width: 426px) {
+  .luxacreamy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;      
+    height: auto;
+    padding: 2rem 1rem !important;
+    row-gap: 20px;         
+  }
+
+  .luxa,
+  .creamy {
+    width: 100%;
+    height: 38vh;
+    background-size: 190px;
+    background-position: center; 
+    padding: 2rem !important;
+    box-sizing: border-box;
+  
+  }
+
+  .luxacreamy h1 {
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;      
+  }
+  .luxacreamy h5{
+     text-align: center;
+     color: rgb(38, 43, 43);
+     display: none;
+
+    
+  }
+
+  .luxacreamy p{
+    text-align: center;
+    margin-bottom: 2px;
+    margin-top: -20px;
+  }
+
+  .luxacreamy button {
+    display: block;
+    margin: 10px auto;
+    width: 60%;               
+    max-width: 150px;
+    margin-top: 85px;
+    background-color: yellowgreen;
+  }
+}
+
+
+@media (min-width: 426px) and (max-width: 789px) {
+  .luxacreamy {
+    flex-direction: column;
+    height: auto;
+    padding: 3rem 2rem !important;
+    row-gap: 30px;
+  }
+
+  .luxa,
+  .creamy {
+    width: 80%;
+    height: auto;
+    background-size: contain;
+    padding: 2.5rem !important;
+  }
+
+  .luxacreamy h1 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .luxacreamy p,
+  .luxacreamy h5 {
+    text-align: center;
+  }
+
+  .luxacreamy button {
+    display: block;
+    margin: 15px auto;
+  }
+}
+
+
+
+
+
+/* <!-- Our Recent Blog  128#style2--> */
+
+
+@media screen and (min-width:320px) and (max-width:426px) {
+  .blog {
+    flex-direction: column;
+    text-align: center;
+    margin: 30px 0;
+  }
+
+  .blog .blogname h1,
+  .read a {
+    margin-left: 0;
+    font-size: 1.2rem;
+  }
+
+  .blogicon {
+    flex-direction: column;
+    height: auto;
+    gap: 20px;
+  }
+
+  .blogicon .blogicon1 {
+    width: 90%;
+    height: auto;
+  }
+
+  .blogicon1 img {
+    height: auto;
+    width: 100%;
+  }
+
+  .blogicon1 .blogcontent {
+    width: 100%;
+    height: auto;
+  }
+
+  .blogicon1 h4 {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 789px) {
+  .blog {
+    flex-direction: column;
+    text-align: center;
+    margin: 40px 0;
+  }
+
+  .blogicon {
+    flex-wrap: nowrap;
+    height: auto;
+    gap: 20px;
+  }
+
+  .blogicon .blogicon1 {
+    width: 45%;
+    height: auto;
+  }
+
+  .blogicon1 img {
+    height: auto;
+    width: 100%;
+  }
+
+  .blogicon1 .blogcontent {
+    width: 100%;
+    height: auto;
+  }
+
+  .blogicon1 h4 {
+    font-size: 1.1rem;
+  }
+}
+
+/* People are looking for */
+@media screen and (min-width: 320px) and (max-width: 426px) {
+  .container2 {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .container2 h2 {
+    font-size: 24px; /* mobile-friendly heading */
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .tags {
+    justify-content: center; /* stack tags in center */
+    gap: 8px;
+    padding-left: 0;
+    margin-bottom: 30px;
+  }
+
+  .tags span {
+    font-size: 12px; /* smaller tag text */
+    padding: 6px 12px; /* tighter padding */
+  }
+}
+
+@media screen and (min-width:426px) and (max-width:789px) {
+  /* Container */
+  .container2 {
+    width: 90%; /* a bit wider on tablet */
+    margin: 0 auto;
+    padding: 0 15px; /* more breathing space */
+  }
+
+  /* Heading */
+  .container2 h2 {
+    font-size: clamp(1.2rem, 4vw, 2rem); /* scale up heading */
+    font-weight: 600;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  /* Tags wrapper */
+  .tags {
+    display: flex;
+    flex-wrap: wrap; /* allow multiple rows */
+    justify-content: center; /* center tags */
+    gap: 10px 15px; /* row and column spacing */
+    margin-bottom: 25px;
+    padding: 0;
+  }
+
+  /* Each tag */
+  .tags span {
+    display: inline-block;
+    font-size: clamp(0.8rem, 2.5vw, 1rem); /* larger on tablet */
+    padding: 6px 14px; /* roomier tags */
+    background: #f0f0f0; /* chip style */
+    border-radius: 15px;
+    color: #444;
+    text-align: center;
+    white-space: nowrap; /* keep each tag in one line */
+    flex: 0 1 auto; /* let tags shrink/grow naturally */
+  }
+}
+
+
+
+
+
+
+
+
+/* <!-- footer --> */
+
+@media screen and (min-width:320px) and (max-width:426px) {
+  .footer-container {
+    text-align: center;
+  }
+
+  .footer-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .social-icons {
+    gap: 0px;
+    justify-content: space-evenly;
+  }
+
+  .social-icons img {
+    width: 30px;
+    height: 30px;
+    gap: 0px;
+
+  }
+}
+
+/* <!-- get 25%  discount on your  330--> */
+
+/* 📱 Mobile Devices (320px - 426px) */
+@media screen and (min-width:320px) and (max-width:426px) {
+  .form {
+    flex-direction: column;
+    height: auto;
+    padding: 2rem 1rem !important;
+    row-gap: 30px;
+  }
+
+  .form1 {
+    width: 100%;
+    height: auto;
+    text-align: center;
+  }
+
+  .form2 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .form1 h2 {
+    font-size: 24px;
+  }
+
+  .form1 p {
+    text-align: center;
+  }
+}
+
+
+@media (min-width: 426px) and (max-width: 789px) {
+  .form {
+    flex-direction: column;
+    height: auto;
+    padding: 3rem 2rem !important;
+    row-gap: 40px;
+  }
+
+  .form1 {
+    width: 80%;
+    height: auto;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .form2 {
+    width: 80%;
+    margin: 0 auto;
+    padding: 25px;
+  }
+
+  .form1 h2 {
+    font-size: 28px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* <!-- App Store & download 174 --> */
+@media screen and (min-width:320px) and (max-width:426px) {
+  .appstore {
+    flex-direction: column;
+    width: 95%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    row-gap: 20px;
+  }
+
+  .appstore .phone1,
+  .appstore .app {
+    width: 100%;
+  }
+
+  .phone1 img {
+    height: auto;
+    width: 100%;
+  }
+
+  .app img {
+    text-align: center;
+    padding: 10px 10px;
+    border-radius: 20px;
+
+  }
+}
+
+@media screen and (min-width:426px) and (max-width:789px) {
+  /* Main container */
+  .appstore {
+    display: flex;
+    flex-direction: row;
+    width: 95%;
+    margin: 60px auto 0;
+    padding: 1rem;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+  }
+
+  /* Left (Phone) & Right (App) sections */
+  .appstore .phone1,
+  .appstore .app {
+    width: 48%;
+  }
+
+  /* Headline / Text styling */
+  .app h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: clamp(1.2rem, 2.5vw, 2rem); /* auto-scale font */
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  /* Phone image */
+  .phone1 img {
+    width: 90%;
+    height: 550px; /* responsive */
+    border-radius: 15px;
+    object-fit: cover;
+  }
+
+  .phone1 img:hover {
+    transform: scale(1.03); /* smooth hover zoom */
+  }
+
+  /* App image */
+  .app img {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 20px;
+    width: 90%; /* responsive width */
+    max-width: 280px; /* keep neat */
+    height: auto; /* auto scale */
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .app img:hover {
+    transform: scale(1.05); /* smooth hover zoom */
+  }
+
+  /* Optional: small text under headline */
+  .app p {
+    font-size: clamp(0.8rem, 1.8vw, 1rem); /* auto-scale */
+    color: #444;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
+
+
+
+
+/* our features */
+@media screen and (min-width: 320px) and (max-width: 426px) {
+  .features1 {
+    font-size: 24px; 
+    padding-left: 0;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .features {
+    flex-direction: column; 
+    align-items: center;
+    gap: 15px;
+    padding: 10px 0;
+  }
+
+  .f1 {
+    width: 90%; 
+    min-width: unset;
+    padding: 15px;
+  }
+
+  .f1 img {
+    width: 45px;
+    height: 45px;
+  }
+
+  .f1 b {
+    font-size: 15px;
+  }
+
+  .f1 p {
+    font-size: 13px;
+  }
+}
+
+
+/* Tablet screens (426px–768px) */
+@media screen and (min-width: 426px) and (max-width: 789px) {
+  .features1 {
+    font-size: 32px; 
+    padding-left: 10px;
+    text-align: center; 
+    margin-bottom: 15px;
+  }
+
+  .features {
+    justify-content: center; 
+    gap: 20px;
+    padding: 15px 0;
+  }
+
+  .f1 {
+    width: 45%; 
+    min-width: unset; 
+    padding: 20px;
+  }
+}
