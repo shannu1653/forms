@@ -16,13 +16,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "your-default-secret-key")
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-# ALLOWED_HOSTS
+# -----------------------------
+# ALLOWED HOSTS
+# -----------------------------
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-# optional: add your Render URL directly for testing
-ALLOWED_HOSTS.append("forms-2-2ajg.onrender.com")
+if not DEBUG and RENDER_EXTERNAL_HOSTNAME:
+    CSRF_TRUSTED_ORIGINS = [f'https://{RENDER_EXTERNAL_HOSTNAME}']
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# -----------------------------
+# CSRF Trusted Origins
+# -----------------------------
+if not DEBUG:
+    CSRF_TRUSTED_ORIGINS = [
+        f'https://{RENDER_EXTERNAL_HOSTNAME}',
+    ]
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+else:
+    CSRF_TRUSTED_ORIGINS = []
 
 # -----------------------------
 # INSTALLED APPS
@@ -42,7 +56,7 @@ INSTALLED_APPS = [
 # -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # must be after SecurityMiddleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # after SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -76,14 +90,17 @@ TEMPLATES = [
 ]
 
 # -----------------------------
-# DATABASE (MySQL + optional SSL for Render)
+# DATABASE
 # -----------------------------
 pymysql.install_as_MySQLdb()
 
-ssl_ca_path = "/etc/secrets/mysql-ca.pem"
+import os
+
 ssl_options = {}
-if os.path.exists(ssl_ca_path):
-    ssl_options = {'ssl': {'ca': ssl_ca_path}}
+if os.environ.get("MYSQL_SSL") == "true":
+    ssl_ca_path = "/etc/secrets/mysql-ca.pem"
+    if os.path.exists(ssl_ca_path):
+        ssl_options = {'ssl': {'ca': ssl_ca_path}}
 
 DATABASES = {
     'default': {
@@ -96,6 +113,7 @@ DATABASES = {
         'OPTIONS': ssl_options,
     }
 }
+
 
 # -----------------------------
 # PASSWORD VALIDATION
@@ -116,7 +134,7 @@ USE_I18N = True
 USE_TZ = True
 
 # -----------------------------
-# STATIC FILES (WhiteNoise / Render)
+# STATIC FILES
 # -----------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -127,26 +145,3 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # DEFAULT PRIMARY KEY
 # -----------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# -----------------------------
-# SECURITY
-# -----------------------------
-SECRET_KEY = os.environ.get("SECRET_KEY", "your-default-secret-key")
-DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
-
-# ALLOWED_HOSTS
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-ALLOWED_HOSTS.append("forms-2-2ajg.onrender.com")  # optional: your Render URL
-
-# CSRF trusted origins (fixes 403 CSRF error)
-CSRF_TRUSTED_ORIGINS = [
-'https://forms-d3jh.onrender.com',
-]
-
-# Optional: secure cookies
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
