@@ -1,8 +1,11 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+import pymysql
 
+# -----------------------------
 # Load environment variables
+# -----------------------------
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # -----------------------------
 # SECURITY
 # -----------------------------
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", "your-default-secret-key")
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
 # ALLOWED_HOSTS (dynamic for Render)
@@ -29,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'form',
+    'form',  # your app
 ]
 
 # -----------------------------
@@ -37,7 +40,7 @@ INSTALLED_APPS = [
 # -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # <--- Add Whitenoise
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise for static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -46,7 +49,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# -----------------------------
+# URLS & WSGI
+# -----------------------------
 ROOT_URLCONF = 'myproject.urls'
+WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # -----------------------------
 # TEMPLATES
@@ -66,12 +73,9 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myproject.wsgi.application'
-
 # -----------------------------
-# DATABASE SETUP
+# DATABASE (MySQL with optional SSL for Render)
 # -----------------------------
-import pymysql
 pymysql.install_as_MySQLdb()
 
 ssl_ca_path = "/etc/secrets/mysql-ca.pem"
@@ -86,13 +90,13 @@ DATABASES = {
         'USER': os.environ.get('MYSQL_USER'),
         'PASSWORD': os.environ.get('MYSQL_PASSWORD'),
         'HOST': os.environ.get('MYSQL_HOST'),
-        'PORT': os.environ.get('MYSQL_PORT'),
+        'PORT': os.environ.get('MYSQL_PORT', '3306'),
         'OPTIONS': ssl_options,
     }
 }
 
 # -----------------------------
-# PASSWORD VALIDATION
+# PASSWORD VALIDATORS
 # -----------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -110,13 +114,13 @@ USE_I18N = True
 USE_TZ = True
 
 # -----------------------------
-# STATIC FILES (Render Compatible)
+# STATIC FILES (Render / WhiteNoise)
 # -----------------------------
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic destination
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # development static files
 
-# Enable WhiteNoise for production
+# WhiteNoise storage for production
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # -----------------------------
