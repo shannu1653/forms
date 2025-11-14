@@ -3,6 +3,126 @@
 <head>
   <meta charset="utf-8">
   <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 40px;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 24px 32px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #1e293b;
+      font-weight: 600;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 16px;
+      margin-bottom: 18px;
+      border: 1px solid #dbeafe;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border .2s;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      outline: none;
+    }
+
+    button[type="submit"] {
+      padding: 12px 0;
+      width: 100%;
+      background: linear-gradient(90deg, #2563eb 40%, #60a5fa 100%);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(37,99,235, 0.08);
+      transition: background .2s;
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, #3b82f6 20%, #2563eb 100%);
+    }
+
+    p {
+      text-align: center;
+      font-size: 15px;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    p[style] {
+      margin: 8px auto;
+      max-width: 400px;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .errorlist {
+      color: #e11d48;
+      margin-bottom: 8px;
+      padding-left: 10px;
+      font-size: 13px;
+      list-style: none;
+    }
+
+    .password-toggle {
+      display: block;
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .password-toggle input {
+      width: 100%;
+      padding-right: 35px;
+    }
+    .toggle-icon {
+      position: absolute;
+      right: 15px;
+      top: 13px;
+      cursor: pointer;
+      color: #2563eb;
+      font-size: 20px;
+      user-select: none;
+    }
+    @media (max-width: 480px) {
+      form {
+        padding: 16px 8px;
+      }
+    }
+  </style>
 </head>
 <body>
   <h1>Login</h1>
@@ -13,18 +133,35 @@
     {% endfor %}
   {% endif %}
 
-  <form method="post">
+  <form method="post" autocomplete="off">
     {% csrf_token %}
     {{ form.non_field_errors }}
-    <label>Username:</label> {{ form.username }}<br>
+
+    <label for="id_username">Username:</label>
+    {{ form.username }}
     {{ form.username.errors }}
 
-    <label>Password:</label> {{ form.password }}<br>
+    <label for="id_password">Password:</label>
+    <div class="password-toggle">
+      {{ form.password }}
+      <span class="toggle-icon" onclick="togglePassword('id_password')">👁️</span>
+    </div>
     {{ form.password.errors }}
 
     <button type="submit">Login</button>
   </form>
 
   <p>Don't have an account? <a href="{% url 'form:signup' %}">Sign up</a></p>
+
+  <script>
+    function togglePassword(fieldId) {
+      const input = document.getElementById(fieldId);
+      if (input.type === "password") {
+        input.type = "text";
+      } else {
+        input.type = "password";
+      }
+    }
+  </script>
 </body>
 </html>
