@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Signup</title>
+</head>
+<body>
+  <h1>Sign up</h1>
+
+  {% if messages %}
+    {% for m in messages %}
+      <p style="color:green;">{{ m }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <label>First name:</label> {{ form.first_name }}<br>
+    {{ form.first_name.errors }}
+
+    <label>Last name:</label> {{ form.last_name }}<br>
+    {{ form.last_name.errors }}
+
+    <label>Username:</label> {{ form.username }}<br>
+    {{ form.username.errors }}
+
+    <label>Email:</label> {{ form.email }}<br>
+    {{ form.email.errors }}
+
+    <label>DOB:</label> {{ form.dob }}<br>
+    {{ form.dob.errors }}
+
+    <label>Mobile:</label> {{ form.mobile }}<br>
+    {{ form.mobile.errors }}
+
+    <label>Password:</label> {{ form.password }}<br>
+    {{ form.password.errors }}
+
+    <label>Confirm Password:</label> {{ form.password2 }}<br>
+    {{ form.password2.errors }}
+
+    <button type="submit">Sign up</button>
+  </form>
+
+  <p>Already have account? <a href="{% url 'form:login' %}">Login</a></p>
+</body>
+</html>

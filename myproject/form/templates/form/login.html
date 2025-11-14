@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+
+  {% if messages %}
+    {% for m in messages %}
+      <p style="color:red;">{{ m }}</p>
+    {% endfor %}
+  {% endif %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <label>Username:</label> {{ form.username }}<br>
+    {{ form.username.errors }}
+
+    <label>Password:</label> {{ form.password }}<br>
+    {{ form.password.errors }}
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p>Don't have an account? <a href="{% url 'form:signup' %}">Sign up</a></p>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Home</title>
+</head>
+<body>
+  <h1>Welcome {{ request.user.first_name|default:request.user.username }}</h1>
+
+  <p>Email: {{ request.user.email }}</p>
+  <p>DOB: {{ request.user.profile.dob }}</p>
+  <p>Mobile: {{ request.user.profile.mobile }}</p>
+
+  <a href="{% url 'form:logout' %}">Logout</a>
+</body>
+</html>
