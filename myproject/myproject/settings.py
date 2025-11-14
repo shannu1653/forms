@@ -1,7 +1,3 @@
-"""
-Django settings for myproject project.
-"""
-
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -11,21 +7,17 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-
 # -----------------------------
 # SECURITY
 # -----------------------------
-SECRET_KEY = os.environ.get("SECRET_KEY")   # <- from .env
+SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-# Render automatically injects RENDER_EXTERNAL_HOSTNAME
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
-
-RENDER_EXTERNAL_HOSTNAME = os.getenv("RENDER_EXTERNAL_HOSTNAME")
+# ALLOWED_HOSTS (dynamic for Render)
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
 
 # -----------------------------
 # INSTALLED APPS
@@ -40,12 +32,12 @@ INSTALLED_APPS = [
     'form',
 ]
 
-
 # -----------------------------
 # MIDDLEWARE
 # -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <--- Add Whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,9 +46,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'myproject.urls'
-
 
 # -----------------------------
 # TEMPLATES
@@ -78,21 +68,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yourdomain.com', 'your-render-app.onrender.com']
-
-
-
 # -----------------------------
-# DATABASE SETUP (Aiven MySQL)
+# DATABASE SETUP
 # -----------------------------
-import os
 import pymysql
 pymysql.install_as_MySQLdb()
 
-# Load SSL certificate only if exists (Render)
 ssl_ca_path = "/etc/secrets/mysql-ca.pem"
 ssl_options = {}
-
 if os.path.exists(ssl_ca_path):
     ssl_options = {'ssl': {'ca': ssl_ca_path}}
 
@@ -108,8 +91,6 @@ DATABASES = {
     }
 }
 
-
-
 # -----------------------------
 # PASSWORD VALIDATION
 # -----------------------------
@@ -120,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
 # -----------------------------
 # INTERNATIONALIZATION
 # -----------------------------
@@ -129,18 +109,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-
 # -----------------------------
 # STATIC FILES (Render Compatible)
 # -----------------------------
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic destination
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # development static files
 
-# (Optional, but recommended)
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
+# Enable WhiteNoise for production
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # -----------------------------
 # DEFAULT PRIMARY KEY
