@@ -144,7 +144,7 @@ ALLOWED_HOSTS.append("forms-2-2ajg.onrender.com")  # optional: your Render URL
 
 # CSRF trusted origins (fixes 403 CSRF error)
 CSRF_TRUSTED_ORIGINS = [
-    'https://forms-2-2ajg.onrender.com',
+'https://forms-d3jh.onrender.com',
 ]
 
 # Optional: secure cookies
