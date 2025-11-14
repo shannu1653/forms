@@ -16,11 +16,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "your-default-secret-key")
 DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
 
-# ALLOWED_HOSTS (dynamic for Render)
+# ALLOWED_HOSTS
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 RENDER_EXTERNAL_HOSTNAME = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# optional: add your Render URL directly for testing
+ALLOWED_HOSTS.append("forms-2-2ajg.onrender.com")
 
 # -----------------------------
 # INSTALLED APPS
@@ -40,7 +42,7 @@ INSTALLED_APPS = [
 # -----------------------------
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # must be after SecurityMiddleware
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,7 +76,7 @@ TEMPLATES = [
 ]
 
 # -----------------------------
-# DATABASE (MySQL with optional SSL for Render)
+# DATABASE (MySQL + optional SSL for Render)
 # -----------------------------
 pymysql.install_as_MySQLdb()
 
@@ -96,7 +98,7 @@ DATABASES = {
 }
 
 # -----------------------------
-# PASSWORD VALIDATORS
+# PASSWORD VALIDATION
 # -----------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -114,13 +116,11 @@ USE_I18N = True
 USE_TZ = True
 
 # -----------------------------
-# STATIC FILES (Render / WhiteNoise)
+# STATIC FILES (WhiteNoise / Render)
 # -----------------------------
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # collectstatic destination
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # development static files
-
-# WhiteNoise storage for production
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # -----------------------------
